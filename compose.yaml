@@ -1,0 +1,30 @@
+services:
+  tomcat:
+    container_name: tomcat9
+    build: .
+    ports:
+      - 8080:8080
+      - 9012:9012
+    environment:
+      NEW_RELIC_EXPERIMENTAL_RUNTIME: true
+      # NEW_RELIC_LICENSE_KEY: ""
+      # NEW_RELIC_APP_NAME: ""
+      CATALINA_OPTS: >-
+        -javaagent:/usr/local/newrelic/newrelic.jar
+        -Dcom.sun.management.jmxremote.rmi.port=9012
+        -Dcom.sun.management.jmxremote.ssl=false
+        -Dcom.sun.management.jmxremote.local.only=false
+        -Dcom.sun.management.jmxremote.authenticate=false
+        -Dcom.sun.management.jmxremote
+        -Dcom.sun.management.jmxremote.port=9012
+    networks:
+      - my_network
+    volumes:
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+networks:
+  my_network:
+    driver: bridge
+
+#curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/8.24.0/newrelic-java-8.24.0.zip
