@@ -7,7 +7,7 @@ services:
       - 9012:9012
     environment:
       # NEW_RELIC_EXPERIMENTAL_RUNTIME: true
-      NEW_RELIC_LICENSE_KEY: "7a6a1788fa21b39034d40b6b5309b14aFFFFNRAL"
+      NEW_RELIC_LICENSE_KEY: ""
       NEW_RELIC_APP_NAME: "APP_TOMCAT_9.0.90-jdk8-temurin-jammy"
       NEW_RELIC_LOG_LEVEL: "info"
       NEW_RELIC_LOG_FILE_PATH: "/dev/stdout"
