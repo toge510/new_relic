@@ -6,9 +6,11 @@ services:
       - 8080:8080
       - 9012:9012
     environment:
-      NEW_RELIC_EXPERIMENTAL_RUNTIME: true
-      # NEW_RELIC_LICENSE_KEY: ""
-      # NEW_RELIC_APP_NAME: ""
+      # NEW_RELIC_EXPERIMENTAL_RUNTIME: true
+      NEW_RELIC_LICENSE_KEY: "7a6a1788fa21b39034d40b6b5309b14aFFFFNRAL"
+      NEW_RELIC_APP_NAME: "APP_TOMCAT_9.0.90-jdk8-temurin-jammy"
+      NEW_RELIC_LOG_LEVEL: "info"
+      NEW_RELIC_LOG_FILE_PATH: "/dev/stdout"
       CATALINA_OPTS: >-
         -javaagent:/usr/local/newrelic/newrelic.jar
         -Dcom.sun.management.jmxremote.rmi.port=9012
@@ -17,14 +19,7 @@ services:
         -Dcom.sun.management.jmxremote.authenticate=false
         -Dcom.sun.management.jmxremote
         -Dcom.sun.management.jmxremote.port=9012
-    networks:
-      - my_network
     volumes:
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-networks:
-  my_network:
-    driver: bridge
-
-#curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/8.24.0/newrelic-java-8.24.0.zip
